@@ -1,0 +1,10 @@
+//
+// Created by gavin on 11/10/2025.
+//
+
+#ifndef SFMLCODINGPROJECT_CONSTANTS_H
+#define SFMLCODINGPROJECT_CONSTANTS_H
+
+char
+
+#endif //SFMLCODINGPROJECT_CONSTANTS_H

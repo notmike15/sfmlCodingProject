@@ -12,6 +12,11 @@ FetchContent_Declare(SFML
         SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main main.cpp)
-target_compile_features(main PRIVATE cxx_std_17)
+add_executable(main main.cpp
+        headers/Logger.cpp
+        headers/Options.cpp
+        headers/Constants.h
+)
+#target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/headers/)
+target_compile_features(main PRIVATE cxx_std_23)
 target_link_libraries(main PRIVATE SFML::Graphics)

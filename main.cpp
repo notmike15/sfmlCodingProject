@@ -1,8 +1,9 @@
 #include <SFML/Window.hpp>
+#include "Logger.cpp"
 
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
-    sf::Window window(sf::VideoMode({800, 600}), "My window");
+    sf::Window window(sf::VideoMode({800, 600}), "My window", sf::Style::Close);
 
     // run the program as long as the window is open
     while (window.isOpen())
