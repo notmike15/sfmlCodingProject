@@ -25,7 +25,8 @@ Options::~Options() {
     file.close();
 }
 
-Options::Options() {
+Options::Options(bool debug) {
+    isDebug = debug;
     std::fstream file(Constants::OPTIONS_FILE_NAME, std::ios::in);
     if (!file.is_open()) {
         file.open(Constants::OPTIONS_FILE_NAME, std::ios::out);

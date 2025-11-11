@@ -17,8 +17,10 @@ private:
     unsigned windowWidth;
     bool showFPS;
     bool isVSync;
+    bool isDebug;
 public:
-    Options();
+    explicit Options(bool debug);
+    Options() : Options(false) {}
     ~Options();
     int getFrameRate() const;
     unsigned getWindowHeight() const;

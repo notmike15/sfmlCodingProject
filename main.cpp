@@ -1,17 +1,23 @@
 #include <iostream>
-#include <SFML/Window.hpp>
 #include "Constants.h"
 #include "Options.h"
+#include "SFML/Graphics/RenderWindow.hpp"
 
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-int main() {
-    Options options {};
-    sf::Window window(sf::VideoMode({options.getWindowWidth(), options.getWindowHeight()}), Constants::WINDOW_TITLE, sf::Style::Close);
+int main(int argc, char* argv[]) {
+
+    Options options;
+    if (argc >= 2) {
+        if (argv[1] == Constants::DEBUG_CODE) {
+            options = Options(true);
+        }
+        else {
+            options = Options(false);
+        }
+    }
+    sf::RenderWindow window(sf::VideoMode({options.getWindowWidth(), options.getWindowHeight()}), Constants::WINDOW_TITLE, sf::Style::Close);
     window.setVerticalSyncEnabled(options.isVSyncEnabled());
     window.setFramerateLimit(options.getFrameRate());
-
-    std::cout << options.getWindowWidth() << " " << options.getWindowHeight() << std::endl;
-    std::cout << options.getFrameRate() << std::endl;
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -23,5 +29,12 @@ int main() {
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
+
+        window.clear(sf::Color::Black);
+
+
+
+        window.display();
+
     }
 }
