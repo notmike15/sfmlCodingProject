@@ -20,15 +20,18 @@ enum LogLevel { DEBUG, INFO, WARNING, ERROR, CRITICAL };
 class Logger {
 public:
     // Constructor: Opens the log file in append mode
-    Logger(const string& filename);
+    explicit Logger(const string& filename);
     // Destructor: Closes the log file
     ~Logger();
     // Logs a message with a given log level
     void log(LogLevel level, const string& message);
+    bool isLogOpen();
+    void closeLog();
+    void openLog(const string& filename);
 private:
     ofstream logFile; // File stream for the log file
     // Converts log level to a string for output
-    string levelToString(LogLevel level);
+    static string levelToString(LogLevel level);
 
 };
 

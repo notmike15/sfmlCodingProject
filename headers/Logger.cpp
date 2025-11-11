@@ -11,7 +11,23 @@ Logger::Logger(const string &filename) {
     }
 }
 
-Logger::~Logger() { logFile.close(); }
+Logger::~Logger() {
+    if (logFile.is_open()) {
+        logFile.close();
+    }
+}
+
+bool Logger::isLogOpen() { return logFile.is_open(); }
+
+void Logger::openLog(const string &filename) {
+    logFile.open(filename, ios::app);
+    if (!logFile.is_open()) {
+        cerr << "Error opening log file." << endl;
+    }
+}
+
+void Logger::closeLog() { logFile.close(); }
+
 void Logger::log(LogLevel level, const string &message) {
     // Get current timestamp
     time_t now = time(0);
