@@ -3,37 +3,72 @@
 //
 
 #include "Options.h"
-
 #include <fstream>
-
+#include <string>
 #include "Logger.h"
-#include "SFML/Window/Window.hpp"
+#include "Constants.h"
 
-Options::Options(char fileName[32]) {
-    std::fstream file(fileName, std::fstream::in);
+
+Options::~Options() {
+    std::fstream file(Constants::OPTIONS_FILE_NAME, std::ios::out);
     if (!file.is_open()) {
-        file.close();
-        file.open(fileName, std::fstream::out);
-        if (!file.is_open()) {
-            Logger logger("error.log");
-            logger.log(LogLevel::CRITICAL, "Unable to write options file, options will not be saved");
-            std::cout << ""
-        }
+        Logger logger(Constants::ERROR_FILE_NAME);
+        logger.log(LogLevel::CRITICAL, Constants::UNABLE_TO_WRITE_FILE + Constants::OPTIONS_FILE_NAME + '\n');
+        std::cout << Constants::UNABLE_TO_WRITE_FILE << Constants::OPTIONS_FILE_NAME << std::endl;
+        logger.closeLog();
     }
-
+    file << getFrameRate() << endl;
+    file << getWindowHeight() << endl;
+    file << getWindowWidth() << endl;
+    file << (isFPSVisible() ? "1" : "0") << endl;
+    file << (isVSyncEnabled() ? "1" : "0") << endl;
+    file.close();
 }
 
 Options::Options() {
-
+    std::fstream file(Constants::OPTIONS_FILE_NAME, std::ios::in);
+    if (!file.is_open()) {
+        file.open(Constants::OPTIONS_FILE_NAME, std::ios::out);
+        if (!file.is_open()) {
+            Logger logger(Constants::ERROR_FILE_NAME);
+            logger.log(LogLevel::CRITICAL, Constants::UNABLE_TO_WRITE_FILE + Constants::OPTIONS_FILE_NAME + '\n');
+            std::cout << Constants::UNABLE_TO_WRITE_FILE << Constants::OPTIONS_FILE_NAME << std::endl;
+            logger.closeLog();
+        }
+        file << defaultFrameRate << endl;
+        file << defaultWindowHeight << endl;
+        file << defaultWindowWidth << endl;
+        file << (defaultIsFPSVisible ? "1" : "0") << endl;
+        file << (defaultIsVsyncEnabled ? "1" : "0") << endl;
+        file.close();
+        file.open(Constants::OPTIONS_FILE_NAME, std::ios::in);
+        if (!file.is_open()) {
+            Logger logger(Constants::ERROR_FILE_NAME);
+            logger.log(LogLevel::CRITICAL, Constants::UNABLE_TO_WRITE_FILE + Constants::OPTIONS_FILE_NAME + '\n');
+            std::cout << Constants::UNABLE_TO_WRITE_FILE << Constants::OPTIONS_FILE_NAME << std::endl;
+            logger.closeLog();
+        }
+    }
+    std::string input;
+    getline(file, input);
+    frameRate = stoi(input);
+    getline(file, input);
+    windowHeight = stoi(input);
+    getline(file, input);
+    windowWidth = stoi(input);
+    getline(file, input);
+    showFPS = stoi(input);
+    getline(file, input);
+    isVSync = stoi(input);
 }
 
 int Options::getFrameRate() const {
     return frameRate;
 }
-int Options::getWindowHeight() const {
+unsigned Options::getWindowHeight() const {
     return windowHeight;
 }
-int Options::getWindowWidth() const {
+unsigned Options::getWindowWidth() const {
     return windowWidth;
 }
 bool Options::isVSyncEnabled() const {
