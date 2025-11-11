@@ -1,9 +1,17 @@
+#include <iostream>
 #include <SFML/Window.hpp>
-#include "Logger.cpp"
+#include "Constants.h"
+#include "Options.h"
 
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
-    sf::Window window(sf::VideoMode({800, 600}), "My window", sf::Style::Close);
+    Options options {};
+    sf::Window window(sf::VideoMode({options.getWindowWidth(), options.getWindowHeight()}), Constants::WINDOW_TITLE, sf::Style::Close);
+    window.setVerticalSyncEnabled(options.isVSyncEnabled());
+    window.setFramerateLimit(options.getFrameRate());
+
+    std::cout << options.getWindowWidth() << " " << options.getWindowHeight() << std::endl;
+    std::cout << options.getFrameRate() << std::endl;
 
     // run the program as long as the window is open
     while (window.isOpen())
