@@ -38,6 +38,7 @@ namespace NMGP {
                     sf::Vector2f(Constants::PIXEL_RATIO, Constants::PIXEL_RATIO)) {};
             Button(const std::string& name, const std::string& text) : Button(name, text,
                 sf::Font(Constants::DEFAULT_FONT), {0,0}, sf::Texture(Constants::PLAY_BUTTON)) {};
+
             std::string getButtonName() const;
             std::string getButtonText() const;
             sf::Font getFont() const;
@@ -45,6 +46,7 @@ namespace NMGP {
             sf::Sprite getButtonSprite() const;
             ButtonType getButtonType() const;
             ButtonState getButtonState() const;
+
             int onClick() override;
             int onHover() override;
             int offHover() override;
