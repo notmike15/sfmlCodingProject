@@ -12,10 +12,14 @@ FetchContent_Declare(SFML
         SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main main.cpp
-        headers/Logger.cpp
-        headers/Options.cpp
+add_executable(main src/main.cpp
+        src/objects/Logger.cpp
+        src/objects/Options.cpp
+        src/objects/Button.cpp
+        src/objects/Button.h
+        src/objects/Clickable.h
 )
-include_directories(headers)
+include_directories(src/headers
+                    src/objects)
 target_compile_features(main PRIVATE cxx_std_23)
 target_link_libraries(main PRIVATE SFML::Graphics)
