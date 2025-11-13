@@ -4,10 +4,10 @@
 
 #include "Logger.h"
 
-Logger::Logger(const string &filename) {
-    logFile.open(filename, ios::app);
+Logger::Logger(const std::string &filename) {
+    logFile.open(filename, std::ios::app);
     if (!logFile.is_open()) {
-        cerr << "Error opening log file." << endl;
+        std::cerr << "Error opening log file." << std::endl;
     }
 }
 
@@ -19,16 +19,16 @@ Logger::~Logger() {
 
 bool Logger::isLogOpen() { return logFile.is_open(); }
 
-void Logger::openLog(const string &filename) {
-    logFile.open(filename, ios::app);
+void Logger::openLog(const std::string &filename) {
+    logFile.open(filename, std::ios::app);
     if (!logFile.is_open()) {
-        cerr << "Error opening log file." << endl;
+        std::cerr << "Error opening log file." << std::endl;
     }
 }
 
 void Logger::closeLog() { logFile.close(); }
 
-void Logger::log(LogLevel level, const string &message) {
+void Logger::log(LogLevel level, const std::string &message) {
     // Get current timestamp
     time_t now = time(0);
     tm* timeinfo = localtime(&now);
@@ -37,13 +37,13 @@ void Logger::log(LogLevel level, const string &message) {
              "%Y-%m-%d %H:%M:%S", timeinfo);
 
     // Create log entry
-    ostringstream logEntry;
+    std::ostringstream logEntry;
     logEntry << "[" << timestamp << "] "
              << levelToString(level) << ": " << message
-             << endl;
+             << std::endl;
 
     // Output to console
-    cout << logEntry.str();
+    std::cout << logEntry.str();
 
     // Output to log file
     if (logFile.is_open()) {
@@ -54,7 +54,7 @@ void Logger::log(LogLevel level, const string &message) {
 }
 
 
-string Logger::levelToString(LogLevel level){
+std::string Logger::levelToString(LogLevel level){
     switch (level) {
         case DEBUG:
             return "DEBUG";

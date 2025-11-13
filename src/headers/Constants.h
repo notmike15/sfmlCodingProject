@@ -7,11 +7,16 @@
 #include <string>
 
 namespace Constants {
+    // Error strings
     static const std::string UNABLE_TO_WRITE_FILE = "Unable to write file : ";
+    // Default strings
+    static const std::string DEFAULT_FONT = "../resources/fonts/EvilEmpire.otf";
+    static const std::string PLAY_BUTTON = "../resources/buttons/play.png";
     static const std::string OPTIONS_FILE_NAME = "options.cfg";
     static const std::string ERROR_FILE_NAME = "error.log";
-    static const std::string DEBUG_CODE = "DEBUG";
     static const std::string WINDOW_TITLE = "My Window";
+    // Codes
+    static const std::string DEBUG_CODE = "DEBUG";
 }
 
 #endif //SFMLCODINGPROJECT_CONSTANTS_H

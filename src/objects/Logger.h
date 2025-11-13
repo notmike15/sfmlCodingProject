@@ -12,7 +12,6 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-using namespace std;
 
 // Enum to represent log levels
 enum LogLevel { DEBUG, INFO, WARNING, ERROR, CRITICAL };
@@ -20,18 +19,18 @@ enum LogLevel { DEBUG, INFO, WARNING, ERROR, CRITICAL };
 class Logger {
 public:
     // Constructor: Opens the log file in append mode
-    explicit Logger(const string& filename);
+    explicit Logger(const std::string& filename);
     // Destructor: Closes the log file
     ~Logger();
     // Logs a message with a given log level
-    void log(LogLevel level, const string& message);
+    void log(LogLevel level, const std::string& message);
     bool isLogOpen();
     void closeLog();
-    void openLog(const string& filename);
+    void openLog(const std::string& filename);
 private:
-    ofstream logFile; // File stream for the log file
+    std::ofstream logFile; // File stream for the log file
     // Converts log level to a string for output
-    static string levelToString(LogLevel level);
+    static std::string levelToString(LogLevel level);
 
 };
 
