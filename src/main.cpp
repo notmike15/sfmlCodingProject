@@ -17,7 +17,8 @@ int main(int argc, char* argv[]) {
             options = NMGP::Options(false);
         }
     }
-    sf::RenderWindow window(sf::VideoMode({options.getWindowWidth(), options.getWindowHeight()}), Constants::WINDOW_TITLE, sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode({options.getWindowWidth(), options.getWindowHeight()}),
+        Constants::WINDOW_TITLE, sf::Style::Close);
     window.setVerticalSyncEnabled(options.isVSyncEnabled());
     window.setFramerateLimit(options.getFrameRate());
     NMGP::Button button(
