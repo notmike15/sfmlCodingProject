@@ -31,9 +31,13 @@ namespace NMGP {
             ButtonType buttonType;
             ButtonState buttonState;
         public:
-            Button(const std::string &name, const std::string &text, const sf::Font &font, sf::Vector2f pos, const sf::Texture& texture);
-            // Button(const std::string& name, const std::string& text) : Button(name, text,
-            //     sf::Font(Constants::DEFAULT_FONT), {0,0}, sf::Texture(Constants::PLAY_BUTTON)) {};
+            Button(const std::string &name, const std::string &text, const sf::Font &font, sf::Vector2f pos,
+                const sf::Texture& texture, sf::Vector2f scale);
+            Button(const std::string &name, const std::string &text, const sf::Font &font, sf::Vector2f pos,
+                const sf::Texture& texture) : Button(name, text, font, pos, texture,
+                    sf::Vector2f(Constants::PIXEL_RATIO, Constants::PIXEL_RATIO)) {};
+            Button(const std::string& name, const std::string& text) : Button(name, text,
+                sf::Font(Constants::DEFAULT_FONT), {0,0}, sf::Texture(Constants::PLAY_BUTTON)) {};
             std::string getButtonName() const;
             std::string getButtonText() const;
             sf::Font getFont() const;

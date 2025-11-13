@@ -7,13 +7,17 @@
 #include <iostream>
 
 NMGP::Button::Button(const std::string &name, const std::string &text, const sf::Font &font, const sf::Vector2f pos,
-    const sf::Texture &texture) : buttonSprite(texture) {
+    const sf::Texture &texture, sf::Vector2f scale) : buttonSprite(texture) {
     buttonName = name;
     buttonText = text;
     buttonFont = font;
     buttonPos = pos;
     buttonTexture = texture;
+    buttonSprite.setScale(scale);
     buttonSprite.setPosition(buttonPos);
+    buttonSprite.setOrigin(
+        sf::Vector2f(buttonSprite.getTexture().getSize().x / 2.0f, buttonSprite.getTexture().getSize().y / 2.0f)
+    );
     std::cout << buttonName << " initialized at " << buttonSprite.getPosition().x << ", " << buttonSprite.getPosition().
             y << std::endl;
 } ;
