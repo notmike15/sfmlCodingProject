@@ -9,6 +9,8 @@
 namespace Constants {
     // Error strings
     static const std::string UNABLE_TO_WRITE_FILE = "Unable to write file : ";
+    static const std::string REBUILDING_OPTIONS_FILE = "Unable to pull options file, re-building...\n";
+    static const std::string FAILED_TO_REBUILD_OPTIONS_FILE = "Failed to rebuild options file, closing\n";
     // Default strings
     static const std::string DEFAULT_FONT = "../resources/fonts/EvilEmpire.otf";
     static const std::string PLAY_BUTTON = "../resources/buttons/play_2.png";
@@ -17,6 +19,11 @@ namespace Constants {
     static const std::string WINDOW_TITLE = "My Window";
     // Magic Numbers
     static const float PIXEL_RATIO = 8.f;
+    static const char* DEFAULT_FRAME_RATE = "-1";
+    static const char* DEFAULT_WINDOW_HEIGHT = "1080";
+    static const char* DEFAULT_WINDOW_WIDTH = "1920";
+    static const char* DEFAULT_IS_FPS_VISIBLE = "0";
+    static const char* DEFAULT_IS_VSYNC_ENABLED = "1";
     // Codes
     static const std::string DEBUG_CODE = "DEBUG";
 }
