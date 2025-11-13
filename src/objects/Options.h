@@ -23,17 +23,16 @@ namespace NMGP {
         explicit Options(bool debug);
         Options() : Options(false) {}
         ~Options();
+
+        void buildDefaultOptionsFile() const;
+        void fetchOptionsFromFile();
         int getFrameRate() const;
         unsigned getWindowHeight() const;
         unsigned getWindowWidth() const;
         bool isFPSVisible() const;
         bool isVSyncEnabled() const;
     private:
-        const char* defaultFrameRate = "-1";
-        const char* defaultWindowHeight = "1080";
-        const char* defaultWindowWidth = "1920";
-        const char* defaultIsFPSVisible = "0";
-        const char* defaultIsVsyncEnabled = "1";
+        int fileLoadCount = 0;
     };
 }
 #endif //SFMLCODINGPROJECT_OPTIONS_H
