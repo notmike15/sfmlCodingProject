@@ -6,26 +6,27 @@
 
 #include <iostream>
 
-NMGP::Button::Button(const std::string &name, const std::string &text, const sf::Font &font, const sf::Vector2f pos,
-    const sf::Texture &texture, sf::Vector2f scale) : buttonSprite(texture) {
+NMGP::Button::Button(const std::string &name, const std::string &text, LAYER layer, const sf::Font &font, const sf::Vector2f pos,
+    const sf::Texture &texture, sf::Vector2f scale, ButtonType btype) : Clickable(texture, layer, pos, scale)  {
+    buttonType = btype;
+    buttonState = ButtonState::DEFAULT;
     buttonName = name;
     buttonText = text;
     buttonFont = font;
-    buttonPos = pos;
-    buttonTexture = texture;
-    buttonSprite.setScale(scale);
-    buttonSprite.setPosition(buttonPos);
-    buttonSprite.setOrigin(
-        sf::Vector2f(buttonSprite.getTexture().getSize().x / 2.0f, buttonSprite.getTexture().getSize().y / 2.0f)
+    objPos = pos;
+    objTexture = texture;
+    objSprite.setScale(scale);
+    objSprite.setOrigin(
+        sf::Vector2f(objSprite.getTexture().getSize().x / 2.0f, objSprite.getTexture().getSize().y / 2.0f)
     );
-    std::cout << buttonName << " initialized at " << buttonSprite.getPosition().x << ", " << buttonSprite.getPosition().
+    std::cout << buttonName << " initialized at " << objSprite.getPosition().x << ", " << objSprite.getPosition().
             y << std::endl;
 } ;
 std::string NMGP::Button::getButtonName() const { return buttonName; };
 std::string NMGP::Button::getButtonText() const { return buttonText; };
 sf::Font NMGP::Button::getFont() const { return buttonFont; };
-sf::Vector2f NMGP::Button::getButtonPos() const { return buttonPos; };
-sf::Sprite NMGP::Button::getButtonSprite() const { return buttonSprite; };
+sf::Vector2f NMGP::Button::getButtonPos() const { return objPos; };
+sf::Sprite NMGP::Button::getButtonSprite() const { return objSprite; };
 NMGP::ButtonState NMGP::Button::getButtonState() const { return buttonState; };
 NMGP::ButtonType NMGP::Button::getButtonType() const { return buttonType; };
 int NMGP::Button::onClick() {

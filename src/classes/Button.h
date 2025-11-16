@@ -25,18 +25,15 @@ namespace NMGP {
             std::string buttonName;
             std::string buttonText;
             sf::Font buttonFont;
-            sf::Vector2f buttonPos;
-            sf::Texture buttonTexture;
-            sf::Sprite buttonSprite;
             ButtonType buttonType;
             ButtonState buttonState;
         public:
-            Button(const std::string &name, const std::string &text, const sf::Font &font, sf::Vector2f pos,
-                const sf::Texture& texture, sf::Vector2f scale);
-            Button(const std::string &name, const std::string &text, const sf::Font &font, sf::Vector2f pos,
-                const sf::Texture& texture) : Button(name, text, font, pos, texture,
-                    sf::Vector2f(Constants::PIXEL_RATIO, Constants::PIXEL_RATIO)) {};
-            Button(const std::string& name, const std::string& text) : Button(name, text,
+            Button(const std::string &name, const std::string &text, LAYER layer, const sf::Font &font, sf::Vector2f pos,
+                const sf::Texture& texture, sf::Vector2f scale, ButtonType btype);
+            Button(const std::string &name, const std::string &text, LAYER layer, const sf::Font &font, sf::Vector2f pos,
+                const sf::Texture& texture) : Button(name, text, layer, font, pos, texture,
+                    sf::Vector2f(Constants::PIXEL_RATIO, Constants::PIXEL_RATIO), ButtonType::PLAY_BUTTON) {};
+            Button(const std::string& name, const std::string& text) : Button(name, text, LAYER::BUTTON,
                 sf::Font(Constants::DEFAULT_FONT), {0,0}, sf::Texture(Constants::PLAY_BUTTON)) {};
 
             std::string getButtonName() const;
