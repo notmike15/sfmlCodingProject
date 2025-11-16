@@ -22,8 +22,8 @@ int main(int argc, char* argv[]) {
     window.setVerticalSyncEnabled(options.isVSyncEnabled());
     window.setFramerateLimit(options.getFrameRate());
     NMGP::Button button(
-        "Test", "Testing", sf::Font(Constants::DEFAULT_FONT), {500.f, 500.f},
-        NMGP::play_button_texture, {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO});
+        "Test", "Testing", NMGP::Object::BUTTON, sf::Font(Constants::DEFAULT_FONT), {500.f, 500.f},
+        NMGP::play_button_texture, {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, NMGP::PLAY_BUTTON);
 
     // run the program as long as the window is open
     while (window.isOpen())
