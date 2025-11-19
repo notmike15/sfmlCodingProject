@@ -1,5 +1,5 @@
 #include <iostream>
-#include <thread>
+#include <memory>
 
 #include "Button.h"
 #include "Constants.h"
@@ -25,10 +25,11 @@ int main(int argc, char* argv[]) {
     window.setFramerateLimit(options.getFrameRate());
 
     NMGP::Level level1 = NMGP::Level();
-    NMGP::Button obj = NMGP::Button(
+
+    level1.addObject(std::make_shared<NMGP::Object>());
+    level1.addObject(std::shared_ptr<NMGP::Object>(new NMGP::Button(
         "Test", "Testing", NMGP::Object::BUTTON, sf::Font(Constants::DEFAULT_FONT), {500.f, 500.f},
-        sf::Texture(Constants::PLAY_BUTTON), {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, NMGP::PLAY_BUTTON);
-    level1.addObject(obj);
+        sf::Texture(Constants::PLAY_BUTTON), {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, NMGP::PLAY_BUTTON)));
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -37,40 +38,23 @@ int main(int argc, char* argv[]) {
         // check all the window's events that were triggered since the last iteration of the loop
         while (const std::optional event = window.pollEvent())
         {
-            // "close requested" event: we close the window
             if (const auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>()) {
                 if (mouseButtonPressed->button == sf::Mouse::Button::Left) {
-                    std::cout << "Clicked...\n";
-                    NMGP::Clickable* clicked = level1.getClickedOn(window.mapPixelToCoords(mouseButtonPressed->position));
+                    std::shared_ptr<NMGP::Object> clicked = level1.getClickedOn(window.mapPixelToCoords(mouseButtonPressed->position));
                     if (clicked != nullptr) {
                         clicked->onClick();
                     }
                 }
             }
-            if (event->is<sf::Event::Closed>()) {
+            // "close requested" event: we close the window
+            else if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
         }
-        for (NMGP::Object obj : level1.getObjects()) {
-            window.draw(obj.getSprite());
+        for (std::shared_ptr<NMGP::Object> obj : level1.getObjects()) {
+            window.draw(obj->getSprite());
         }
         // end the current frame
         window.display();
-    }
-}
-
-void renderingThread(sf::RenderWindow* window, NMGP::Level* levelData) {
-    // activate the window's context
-    window->setActive(true);
-
-    // the rendering loop
-    while (window->isOpen())
-    {
-        for (NMGP::Object obj : levelData->getObjects()) {
-            window->draw(obj.getSprite());
-        }
-
-        // end the current frame
-        window->display();
     }
 }
