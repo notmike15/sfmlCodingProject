@@ -17,6 +17,7 @@ namespace Constants {
     static const std::string OPTIONS_FILE_NAME = "options.cfg";
     static const std::string ERROR_FILE_NAME = "error.log";
     static const std::string WINDOW_TITLE = "My Window";
+    static const std::string DEFAULT_OBJECT_NAME = "TEST";
     // Magic Numbers
     static const float PIXEL_RATIO = 8.f;
     static const char* DEFAULT_FRAME_RATE = "-1";
