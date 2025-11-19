@@ -6,7 +6,7 @@
 #include <fstream>
 #include <string>
 #include "Logger.h"
-#include "../headers/Constants.h"
+#include "Constants.h"
 
 namespace NMGP {
     Options::~Options() {

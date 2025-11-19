@@ -3,7 +3,6 @@
 
 #ifndef SFMLCODINGPROJECT_OPTIONS_H
 #define SFMLCODINGPROJECT_OPTIONS_H
-#include "../headers/Constants.h"
 #include <string>
 
 
