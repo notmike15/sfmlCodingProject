@@ -6,8 +6,10 @@
 
 #include <iostream>
 
+#include "Object.h"
+
 NMGP::Button::Button(const std::string &name, const std::string &text, LAYER layer, const sf::Font &font, const sf::Vector2f pos,
-    const sf::Texture &texture, sf::Vector2f scale, ButtonType btype) : Clickable(texture, layer, pos, scale)  {
+                     const sf::Texture &texture, sf::Vector2f scale, ButtonType btype) : NMGP::Object(texture, layer, pos, scale)  {
     buttonType = btype;
     buttonState = ButtonState::DEFAULT;
     buttonName = name;
@@ -19,8 +21,6 @@ NMGP::Button::Button(const std::string &name, const std::string &text, LAYER lay
     objSprite.setOrigin(
         sf::Vector2f(objSprite.getTexture().getSize().x / 2.0f, objSprite.getTexture().getSize().y / 2.0f)
     );
-    std::cout << buttonName << " initialized at " << objSprite.getPosition().x << ", " << objSprite.getPosition().
-            y << std::endl;
 } ;
 std::string NMGP::Button::getButtonName() const { return buttonName; };
 std::string NMGP::Button::getButtonText() const { return buttonText; };

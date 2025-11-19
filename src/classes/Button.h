@@ -4,8 +4,8 @@
 
 #ifndef SFMLCODINGPROJECT_BUTTON_H
 #define SFMLCODINGPROJECT_BUTTON_H
-#include "Clickable.h"
 #include "Constants.h"
+#include "Object.h"
 #include "SFML/Graphics/Font.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 
@@ -20,7 +20,7 @@ namespace NMGP {
         PRESSED = 2,
         DISABLED = 3
     };
-    class Button : public Clickable {
+    class Button : public Object {
         private:
             std::string buttonName;
             std::string buttonText;

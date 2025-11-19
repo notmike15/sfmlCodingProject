@@ -5,7 +5,6 @@
 #ifndef SFMLCODINGPROJECT_OBJECT_H
 #define SFMLCODINGPROJECT_OBJECT_H
 #include <utility>
-
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/Graphics/Texture.hpp"
 #include <string>
@@ -30,10 +29,10 @@ namespace NMGP {
             LAYER objLayer;
             sf::Vector2f objPos;
         public:
+            Object();
             Object(std::string name, int id, const sf::Texture& texture, LAYER layer, sf::Vector2f pos, sf::Vector2f scale);
             Object(sf::Texture texture, LAYER layer, sf::Vector2f pos, sf::Vector2f scale) :
                 Object(Constants::DEFAULT_OBJECT_NAME, 0, texture, layer, pos, scale) {};
-            virtual ~Object() = default;
             sf::Texture getTexture() { return objTexture; };
             sf::Sprite getSprite() { return objSprite; };
             LAYER getLayer() const { return objLayer; };
@@ -46,6 +45,10 @@ namespace NMGP {
             int getObjectID() { return objectID; };
             void setObjectName(std::string name) { objName = name; };
             std::string getObjectName() { return objName; };
+
+            virtual int onClick() { return -1; };
+            virtual int onHover() { return -1; };
+            virtual int offHover() { return -1; };
     };
 }
 
