@@ -5,6 +5,7 @@
 #ifndef SFMLCODINGPROJECT_CONSTANTS_H
 #define SFMLCODINGPROJECT_CONSTANTS_H
 #include <string>
+#include "SFML/Graphics/Texture.hpp"
 
 namespace Constants {
     // Error strings
@@ -27,6 +28,9 @@ namespace Constants {
     static const char* DEFAULT_IS_VSYNC_ENABLED = "1";
     // Codes
     static const std::string DEBUG_CODE = "DEBUG";
+    static int ERROR_OBJECT_ID = -999;
+
+    static auto DEFAULT_TEXTURE = sf::Texture(PLAY_BUTTON);
 }
 
 #endif //SFMLCODINGPROJECT_CONSTANTS_H
