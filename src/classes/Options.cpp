@@ -5,6 +5,7 @@
 #include "Options.h"
 #include <fstream>
 #include <string>
+#include <iostream>
 #include "Logger.h"
 #include "Constants.h"
 
@@ -25,7 +26,7 @@ namespace NMGP {
         file.close();
     }
 
-    void Options::buildDefaultOptionsFile() const {
+    void Options::buildDefaultOptionsFile() {
         std::fstream file(Constants::OPTIONS_FILE_NAME, std::ios::out | std::ios::trunc);
         if (!file.is_open()) {
             Logger logger(Constants::ERROR_FILE_NAME);
@@ -73,7 +74,7 @@ namespace NMGP {
             isVSync = stoi(input);
             file.close();
         }
-        catch (std::invalid_argument& e) {
+        catch (std::invalid_argument&) {
             Logger logger(Constants::ERROR_FILE_NAME);
             logger.log(LogLevel::ERROR, Constants::REBUILDING_OPTIONS_FILE);
             logger.closeLog();
@@ -81,7 +82,7 @@ namespace NMGP {
             buildDefaultOptionsFile();
             fetchOptionsFromFile();
         }
-        catch (std::exception& e) {
+        catch (std::exception&) {
             Logger logger(Constants::ERROR_FILE_NAME);
             logger.log(LogLevel::ERROR, Constants::REBUILDING_OPTIONS_FILE);
             logger.closeLog();
@@ -115,5 +116,11 @@ namespace NMGP {
     }
     bool Options::isFPSVisible() const {
         return showFPS;
+    }
+    float Options::getWindowHeightFloat() const {
+        return static_cast<float>(windowHeight);
+    }
+    float Options::getWindowWidthFloat() const {
+        return static_cast<float>(windowWidth);
     }
 }
