@@ -12,8 +12,8 @@
 
 namespace NMGP {
     class Object {
-        public:
-            enum LAYER {
+    public:
+        enum LAYER {
                 BACKGROUND = 0,
                 SEMI_BACKGROUND = 1,
                 SPRITE = 2,
@@ -30,8 +30,9 @@ namespace NMGP {
             sf::Vector2f objPos;
         public:
             Object();
+            virtual ~Object() = default;
             Object(std::string name, int id, const sf::Texture& texture, LAYER layer, sf::Vector2f pos, sf::Vector2f scale);
-            Object(sf::Texture texture, LAYER layer, sf::Vector2f pos, sf::Vector2f scale) :
+            Object(const sf::Texture& texture, LAYER layer, sf::Vector2f pos, sf::Vector2f scale) :
                 Object(Constants::DEFAULT_OBJECT_NAME, 0, texture, layer, pos, scale) {};
             sf::Texture getTexture() { return objTexture; };
             sf::Sprite getSprite() { return objSprite; };
@@ -40,10 +41,10 @@ namespace NMGP {
             void setTexture(sf::Texture texture) { objTexture = std::move(texture); };
             void setSprite(sf::Sprite sprite) { objSprite = std::move(sprite); };
             void setPosition(sf::Vector2f pos) { objPos = pos; };
-            sf::Vector2f getPosition() { return objPos; };
+            sf::Vector2f getPosition() const { return objPos; };
             void setObjectID(int id);
-            int getObjectID() { return objectID; };
-            void setObjectName(std::string name) { objName = name; };
+            int getObjectID() const { return objectID; };
+            void setObjectName(const std::string &name) { objName = name; };
             std::string getObjectName() { return objName; };
 
             virtual int onClick() { return -1; };
