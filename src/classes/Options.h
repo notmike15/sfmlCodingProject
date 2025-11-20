@@ -23,13 +23,15 @@ namespace NMGP {
         Options() : Options(false) {}
         ~Options();
 
-        void buildDefaultOptionsFile() const;
+        static void buildDefaultOptionsFile() ;
         void fetchOptionsFromFile();
-        int getFrameRate() const;
-        unsigned getWindowHeight() const;
-        unsigned getWindowWidth() const;
-        bool isFPSVisible() const;
-        bool isVSyncEnabled() const;
+        [[nodiscard]] int getFrameRate() const;
+        [[nodiscard]] unsigned getWindowHeight() const;
+        [[nodiscard]] unsigned getWindowWidth() const;
+        [[nodiscard]] float getWindowHeightFloat() const;
+        [[nodiscard]] float getWindowWidthFloat() const;
+        [[nodiscard]] bool isFPSVisible() const;
+        [[nodiscard]] bool isVSyncEnabled() const;
     private:
         int fileLoadCount = 0;
     };
