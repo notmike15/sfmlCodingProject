@@ -1,8 +1,9 @@
-#include <iostream>
+
 #include <memory>
 
 #include "Button.h"
 #include "Constants.h"
+#include "GameManager.h"
 #include "Level.h"
 #include "Options.h"
 #include "SFML/Graphics/RenderWindow.hpp"
@@ -10,51 +11,48 @@
 // TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int argc, char* argv[]) {
 
-    NMGP::Options options;
+    NMGP::GameManager game;
     if (argc >= 2) {
         if (argv[1] == Constants::DEBUG_CODE) {
-            options = NMGP::Options(true);
-        }
-        else {
-            options = NMGP::Options(false);
+            game.setOptions(NMGP::Options(true));
         }
     }
-    sf::RenderWindow window(sf::VideoMode({options.getWindowWidth(), options.getWindowHeight()}),
-        Constants::WINDOW_TITLE, sf::Style::Close);
-    window.setVerticalSyncEnabled(options.isVSyncEnabled());
-    window.setFramerateLimit(options.getFrameRate());
-
-    NMGP::Level level1 = NMGP::Level();
-
-    level1.addObject(std::make_shared<NMGP::Object>());
-    level1.addObject(std::shared_ptr<NMGP::Object>(new NMGP::Button(
-        "Test", "Testing", NMGP::Object::BUTTON, sf::Font(Constants::DEFAULT_FONT), {500.f, 500.f},
-        sf::Texture(Constants::PLAY_BUTTON), {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, NMGP::PLAY_BUTTON)));
 
     // run the program as long as the window is open
-    while (window.isOpen())
+    while (game.getWindow()->isOpen())
     {
-        window.clear(sf::Color::Black);
+        game.getWindow()->clear(sf::Color::Black);
         // check all the window's events that were triggered since the last iteration of the loop
-        while (const std::optional event = window.pollEvent())
+        while (const std::optional<sf::Event> event = game.getWindow()->pollEvent())
         {
             if (const auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>()) {
                 if (mouseButtonPressed->button == sf::Mouse::Button::Left) {
-                    std::shared_ptr<NMGP::Object> clicked = level1.getClickedOn(window.mapPixelToCoords(mouseButtonPressed->position));
+                    std::shared_ptr<NMGP::Object> clicked = game.getActiveLevel()->
+                        getClickedOn(game.getWindow()->mapPixelToCoords(mouseButtonPressed->position));
                     if (clicked != nullptr) {
-                        clicked->onClick();
+                        switch (clicked->onClick()) {
+                            case Constants::ButtonClicks::MAIN_MENU_PRESSED:
+                                game.changeLevel(NMGP::Level::MAIN_MENU);
+                                break;
+                            case Constants::ButtonClicks::OPTIONS_PRESSED:
+                                game.changeLevel(NMGP::Level::OPTIONS);
+                                break;
+                            case Constants::ButtonClicks::PLAY_BUTTON_PRESSED:
+                                game.changeLevel(NMGP::Level::PLAY);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
             // "close requested" event: we close the window
             else if (event->is<sf::Event::Closed>()) {
-                window.close();
+                game.getWindow()->close();
             }
         }
-        for (std::shared_ptr<NMGP::Object> obj : level1.getObjects()) {
-            window.draw(obj->getSprite());
-        }
+        game.drawWindow();
         // end the current frame
-        window.display();
+        game.getWindow()->display();
     }
 }
