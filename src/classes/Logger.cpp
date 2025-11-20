@@ -30,7 +30,7 @@ void Logger::closeLog() { logFile.close(); }
 
 void Logger::log(LogLevel level, const std::string &message) {
     // Get current timestamp
-    time_t now = time(0);
+    time_t now = time(nullptr);
     tm* timeinfo = localtime(&now);
     char timestamp[20];
     strftime(timestamp, sizeof(timestamp),

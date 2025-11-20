@@ -8,10 +8,9 @@
 
 // C++ program to implement a basic logging system.
 
-#include <ctime>
 #include <fstream>
-#include <iostream>
 #include <sstream>
+#include <iostream>
 
 // Enum to represent log levels
 enum LogLevel { DEBUG, INFO, WARNING, ERROR, CRITICAL };
