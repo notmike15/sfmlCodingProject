@@ -19,7 +19,8 @@ NMGP::Button::Button(const std::string &name, const std::string &text, LAYER lay
     objTexture = texture;
     objSprite.setScale(scale);
     objSprite.setOrigin(
-        sf::Vector2f(objSprite.getTexture().getSize().x / 2.0f, objSprite.getTexture().getSize().y / 2.0f)
+        sf::Vector2f(static_cast<float>(objSprite.getTexture().getSize().x) / 2.0f,
+            static_cast<float>(objSprite.getTexture().getSize().y) / 2.0f)
     );
 } ;
 std::string NMGP::Button::getButtonName() const { return buttonName; };
@@ -30,15 +31,24 @@ sf::Sprite NMGP::Button::getButtonSprite() const { return objSprite; };
 NMGP::ButtonState NMGP::Button::getButtonState() const { return buttonState; };
 NMGP::ButtonType NMGP::Button::getButtonType() const { return buttonType; };
 int NMGP::Button::onClick() {
-    if (buttonState != NMGP::ButtonState::PRESSED ||
+    if (buttonState != NMGP::ButtonState::PRESSED &&
         buttonState != NMGP::ButtonState::DISABLED)
     {
         buttonState = NMGP::ButtonState::PRESSED;
         std::cout << buttonName << std::endl;
         buttonState = NMGP::ButtonState::HOVER;
-        return 1;
+        switch (buttonType) {
+            case ButtonType::MENU_BUTTON:
+                return Constants::ButtonClicks::MAIN_MENU_PRESSED;
+            case ButtonType::PLAY_BUTTON:
+                return Constants::ButtonClicks::PLAY_BUTTON_PRESSED;
+            case ButtonType::OPTIONS_BUTTON:
+                return Constants::ButtonClicks::OPTIONS_PRESSED;
+            default:
+                return Constants::ButtonClicks::MAIN_MENU_PRESSED;
+        }
     }
-    return 0;
+    return -99;
 };
 int NMGP::Button::onHover() {
     if (buttonState != NMGP::ButtonState::DISABLED) {
