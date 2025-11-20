@@ -12,7 +12,9 @@
 namespace NMGP {
     const sf::Texture play_button_texture(Constants::PLAY_BUTTON);
     enum ButtonType {
-        PLAY_BUTTON = 1
+        PLAY_BUTTON = 901,
+        MENU_BUTTON = 902,
+        OPTIONS_BUTTON = 903
     };
     enum ButtonState {
         DEFAULT = 0,
