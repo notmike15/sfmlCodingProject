@@ -5,7 +5,7 @@
 #include "Level.h"
 #include <algorithm>
 #include <iostream>
-#include <utility>
+
 
 
 namespace NMGP {
@@ -16,7 +16,7 @@ namespace NMGP {
     bool Level::comp(std::shared_ptr<Object> a, std::shared_ptr<Object> b) {
         return a->getObjectID() > b->getObjectID();
     }
-    Level::Level(std::vector<std::shared_ptr<Object>> objs, int id) {
+    Level::Level(std::vector<std::shared_ptr<Object>> objs, int id, ACTIVELEVEL lv) {
         for (std::shared_ptr<Object> object : objs) {
             objects.push_back(object);
         };
@@ -24,6 +24,7 @@ namespace NMGP {
         if (!objects.empty()) {
             std::ranges::sort(objects, comp);
         }
+        levelActiveView = lv;
     }
 
     std::shared_ptr<Object> Level::getObjectByName(std::string name) {
@@ -59,10 +60,12 @@ namespace NMGP {
                 return object;
             }
         }
-        std::cout << "Did not click on anything...\n";
         return {};
     }
 
+    void Level::setActiveLevel(ACTIVELEVEL lv) {
+        levelActiveView = lv;
+    }
 
 
 }
