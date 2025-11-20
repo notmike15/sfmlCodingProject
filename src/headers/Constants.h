@@ -8,6 +8,11 @@
 #include "SFML/Graphics/Texture.hpp"
 
 namespace Constants {
+    enum ButtonClicks {
+        PLAY_BUTTON_PRESSED = 1001,
+        MAIN_MENU_PRESSED = 1002,
+        OPTIONS_PRESSED = 1003
+    };
     // Error strings
     static const std::string UNABLE_TO_WRITE_FILE = "Unable to write file : ";
     static const std::string REBUILDING_OPTIONS_FILE = "Unable to pull options file, re-building...\n";
@@ -26,6 +31,7 @@ namespace Constants {
     static const char* DEFAULT_WINDOW_WIDTH = "1920";
     static const char* DEFAULT_IS_FPS_VISIBLE = "0";
     static const char* DEFAULT_IS_VSYNC_ENABLED = "1";
+    static const int NUMBER_OF_LEVELS = 3;
     // Codes
     static const std::string DEBUG_CODE = "DEBUG";
     static int ERROR_OBJECT_ID = -999;
