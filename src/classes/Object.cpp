@@ -23,6 +23,7 @@ namespace NMGP {
         objSprite.setTexture(objTexture);
         objSprite.setPosition(objPos);
         objSprite.setScale(scale);
+        objectID = -1;
     }
     void Object::setObjectID(int id) {
         if (id >= 0) {
