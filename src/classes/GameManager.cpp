@@ -4,6 +4,7 @@
 
 #include "GameManager.h"
 
+#include "Label.h"
 #include "Level.h"
 
 namespace NMGP {
@@ -65,10 +66,14 @@ namespace NMGP {
     void GameManager::instantiateLevels() {
         // Adding all objects to all levels
         levels.push_back(std::make_shared<Level>());
-        levels[0]->addObject(std::make_shared<Object>());
         levels[0]->addObject(std::shared_ptr<Object>(new Button(
-            "Test", "Testing", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT), {500.f, 500.f},
+            "playButton", "", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT), {500.f, 500.f},
             sf::Texture(Constants::PLAY_BUTTON), {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, PLAY_BUTTON)));
+        levels[0]->addObject(std::shared_ptr<Object>(new Label(
+            "Title", 2, "Title", sf::Color::White, {
+            (window->getSize().x / 2.0f) - 64, (window->getSize().y / 3.5f)
+        }, Object::SEMI_BACKGROUND, 64
+        )));
         levels[0]->setActiveLevel(Level::ACTIVELEVEL::MAIN_MENU);
 
         levels.push_back(std::make_shared<Level>());
@@ -82,7 +87,7 @@ namespace NMGP {
     void GameManager::drawWindow() const {
         std::shared_ptr<Level> activeLevel = getActiveLevel();
         for (int i = 0; i < activeLevel->getObjects().size(); i++) {
-            window->draw(activeLevel->getObjects()[i]->getSprite());
+            window->draw(*activeLevel->getObjects()[i]->getDrawable());
         }
     }
 
