@@ -36,7 +36,7 @@ namespace NMGP {
                 const sf::Texture& texture) : Button(name, text, layer, font, pos, texture,
                     sf::Vector2f(Constants::PIXEL_RATIO, Constants::PIXEL_RATIO), ButtonType::PLAY_BUTTON) {};
             Button(const std::string& name, const std::string& text) : Button(name, text, LAYER::BUTTON,
-                sf::Font(Constants::DEFAULT_FONT), {0,0}, sf::Texture(Constants::PLAY_BUTTON)) {};
+                sf::Font(Constants::DEFAULT_FONT_FILE), {0,0}, sf::Texture(Constants::PLAY_BUTTON)) {};
 
             std::string getButtonName() const;
             std::string getButtonText() const;
