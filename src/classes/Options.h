@@ -22,8 +22,9 @@ namespace NMGP {
         explicit Options(bool debug);
         Options() : Options(false) {}
         ~Options();
-
-        static void buildDefaultOptionsFile() ;
+        // Used if the options file doesn't exist
+        static void buildDefaultOptionsFile();
+        // Pulls options from the file if it exists
         void fetchOptionsFromFile();
         [[nodiscard]] int getFrameRate() const;
         [[nodiscard]] unsigned getWindowHeight() const;

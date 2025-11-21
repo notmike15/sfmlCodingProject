@@ -11,8 +11,11 @@
 #include "Constants.h"
 
 namespace NMGP {
+    // Used as a base class for most drawable objects
     class Object {
     public:
+        // Sets the order objects are displayed
+        // and interacted with
         enum LAYER {
                 BACKGROUND = 0,
                 SEMI_BACKGROUND = 1,
@@ -40,16 +43,21 @@ namespace NMGP {
             void setLayer(LAYER layer) { objLayer = layer; };
             void setTexture(sf::Texture texture) { objTexture = std::move(texture); };
             void setSprite(sf::Sprite sprite) { objSprite = std::move(sprite); };
+            // Virtual so derived classes can change which
+            // drawable object will have its position updated
             virtual void setPosition(sf::Vector2f pos);
             sf::Vector2f getPosition() const { return objPos; };
             void setObjectID(int id);
             int getObjectID() const { return objectID; };
             void setObjectName(const std::string &name) { objName = name; };
             std::string getObjectName() { return objName; };
-
+            // Most drawable objects will not need to process a click
+            // but this allows processing derived class clicks properly
             virtual int onClick() { return -1; };
             virtual int onHover() { return -1; };
             virtual int offHover() { return -1; };
+            // Virtual so derived classes can change which
+            // drawable object will be displayed on draw
             virtual sf::Drawable* getDrawable() { return &objSprite; };
     };
 }

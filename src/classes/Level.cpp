@@ -16,6 +16,12 @@ namespace NMGP {
     bool Level::comp(std::shared_ptr<Object> a, std::shared_ptr<Object> b) {
         return a->getObjectID() > b->getObjectID();
     }
+    bool Level::compLayer(std::shared_ptr<Object> a, std::shared_ptr<Object> b) {
+        return a->getLayer() < b->getLayer();
+    }
+    void Level::sortObjectsByLayer() {
+        std::ranges::sort(objects, compLayer);
+    }
     Level::Level(std::vector<std::shared_ptr<Object>> objs, int id, ACTIVELEVEL lv) {
         for (std::shared_ptr<Object> object : objs) {
             objects.push_back(object);
@@ -42,25 +48,20 @@ namespace NMGP {
 
     void Level::addObject(std::shared_ptr<Object> object) {
         objects.insert(
-            std::ranges::upper_bound(objects, object, comp),
+            std::ranges::upper_bound(objects, object, compLayer),
             object
         );
     }
 
-    void Level::draw(sf::RenderWindow* window) {
-        for (std::shared_ptr<Object> obj : objects) {
-            window->draw(obj->getSprite());
-        }
-    }
-
-
     std::shared_ptr<Object> Level::getClickedOn(sf::Vector2f mousePosition) {
+        std::vector<std::shared_ptr<Object>> objs;
         for (std::shared_ptr<Object> object : objects) {
             if (object->getSprite().getGlobalBounds().contains(mousePosition)) {
-                return object;
+                objs.push_back(object);
             }
         }
-        return {};
+        if (objs.empty()) { return {}; }
+        return *std::ranges::max_element(objs, compLayer);
     }
 
     void Level::setActiveLevel(ACTIVELEVEL lv) {

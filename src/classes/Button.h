@@ -10,12 +10,13 @@
 #include "SFML/Graphics/Sprite.hpp"
 
 namespace NMGP {
-    const sf::Texture play_button_texture(Constants::PLAY_BUTTON);
+    // Used to determine which type of button is instantiated
     enum ButtonType {
         PLAY_BUTTON = 901,
         MENU_BUTTON = 902,
         OPTIONS_BUTTON = 903
     };
+    // Used to make sure only processing clicks when active
     enum ButtonState {
         DEFAULT = 0,
         HOVER = 1,

@@ -14,19 +14,30 @@
 #include "Options.h"
 
 namespace NMGP {
+    // Stores the level data for each level
+    // For example, we have menu, options and playable area
     class Level {
     public:
+        // Used to store which level is currently selected
+        // This creates a map in the GameManager object
         enum ACTIVELEVEL {
             MAIN_MENU = 1,
             OPTIONS = 2,
             PLAY = 3
         };
     private:
+        // Store all objects to be drawn to the window
         std::vector<std::shared_ptr<Object>> objects;
         int levelID;
         ACTIVELEVEL levelActiveView;
     public:
+        // Compare by id
         static bool comp(std::shared_ptr<Object> a, std::shared_ptr<Object> b);
+        // Compare by layer
+        static bool compLayer(std::shared_ptr<Object> a, std::shared_ptr<Object> b);
+        // Sort the objects list by the layer
+        void sortObjectsByLayer();
+
         Level(std::vector<std::shared_ptr<Object>> objs, int id, ACTIVELEVEL lv);
         Level() : Level(std::vector<std::shared_ptr<Object>>(), 0, ACTIVELEVEL::MAIN_MENU) {};
         ~Level();
@@ -38,7 +49,6 @@ namespace NMGP {
         std::shared_ptr<Object> getClickedOn(sf::Vector2f mousePosition);
         void setActiveLevel(ACTIVELEVEL lv);
         [[nodiscard]] ACTIVELEVEL getActiveLevel() const { return levelActiveView; };
-        void draw(sf::RenderWindow* window);
     };
 }
 

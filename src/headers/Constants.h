@@ -9,7 +9,10 @@
 #include "SFML/Graphics/Font.hpp"
 #include "SFML/Graphics/Texture.hpp"
 
+// Holds constants used across the system
 namespace Constants {
+    // Used by the system to determine which button is pressed
+    // and process accordingly
     enum ButtonClicks {
         PLAY_BUTTON_PRESSED = 1001,
         MAIN_MENU_PRESSED = 1002,

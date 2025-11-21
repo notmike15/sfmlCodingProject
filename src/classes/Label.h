@@ -9,8 +9,10 @@
 #include "SFML/Graphics/Text.hpp"
 
 namespace NMGP {
+    // Used for drawing text to the screen
     class Label : public Object {
     private:
+        // Store font, by default it is the downloaded font in resources
         const std::shared_ptr<sf::Font> font = std::make_shared<sf::Font>(Constants::DEFAULT_FONT);
         sf::Text text;
         sf::Color textColor;
@@ -23,7 +25,9 @@ namespace NMGP {
         void setText(std::string text);
 
         void setTextPointSize(int textPointSize);
+        // Overridden so text can be drawn instead of a sprite/texture
         sf::Drawable* getDrawable() override;
+        // Overridden so the text position is updated instead of the sprite's
         void setPosition(sf::Vector2f pos) override;
     };
 } // NMGP

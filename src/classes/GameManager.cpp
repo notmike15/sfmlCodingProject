@@ -85,7 +85,10 @@ namespace NMGP {
         currentLevel = Level::ACTIVELEVEL::MAIN_MENU;
     }
     void GameManager::drawWindow() const {
+        // Gets current active level based on the current level value
         std::shared_ptr<Level> activeLevel = getActiveLevel();
+        // Sorts it by layer and draws in that order
+        activeLevel->sortObjectsByLayer();
         for (int i = 0; i < activeLevel->getObjects().size(); i++) {
             window->draw(*activeLevel->getObjects()[i]->getDrawable());
         }
