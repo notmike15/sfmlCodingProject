@@ -40,7 +40,7 @@ namespace NMGP {
             void setLayer(LAYER layer) { objLayer = layer; };
             void setTexture(sf::Texture texture) { objTexture = std::move(texture); };
             void setSprite(sf::Sprite sprite) { objSprite = std::move(sprite); };
-            void setPosition(sf::Vector2f pos) { objPos = pos; };
+            virtual void setPosition(sf::Vector2f pos);
             sf::Vector2f getPosition() const { return objPos; };
             void setObjectID(int id);
             int getObjectID() const { return objectID; };
@@ -50,6 +50,7 @@ namespace NMGP {
             virtual int onClick() { return -1; };
             virtual int onHover() { return -1; };
             virtual int offHover() { return -1; };
+            virtual sf::Drawable* getDrawable() { return &objSprite; };
     };
 }
 

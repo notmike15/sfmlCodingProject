@@ -21,9 +21,9 @@ namespace NMGP {
         objLayer = layer;
         objPos = pos;
         objSprite.setTexture(objTexture);
-        objSprite.setPosition(objPos);
+        this->Object::setPosition(objPos);
         objSprite.setScale(scale);
-        objectID = -1;
+        objectID = id;
     }
     void Object::setObjectID(int id) {
         if (id >= 0) {
@@ -32,6 +32,11 @@ namespace NMGP {
         else {
             objectID = 0;
         }
+    }
+
+    void Object::setPosition(sf::Vector2f pos) {
+        objPos = pos;
+        objSprite.setPosition(objPos);
     }
 
 }
