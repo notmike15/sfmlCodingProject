@@ -25,6 +25,7 @@ namespace Constants {
     // Default strings
     static const std::string DEFAULT_FONT_FILE = "../resources/fonts/EvilEmpire.otf";
     static const std::string PLAY_BUTTON = "../resources/buttons/play_2.png";
+    static const std::string BG_TEXTURE_DEBUG_LOCATION = "../resources/bg/background_debug_16xScale.png";
     static const std::string OPTIONS_FILE_NAME = "options.cfg";
     static const std::string ERROR_FILE_NAME = "error.log";
     static const std::string WINDOW_TITLE = "My Window";
@@ -36,10 +37,10 @@ namespace Constants {
     static const char* DEFAULT_WINDOW_WIDTH = "1920";
     static const char* DEFAULT_IS_FPS_VISIBLE = "0";
     static const char* DEFAULT_IS_VSYNC_ENABLED = "1";
-    static const int NUMBER_OF_LEVELS = 3;
+    static const std::int32_t NUMBER_OF_LEVELS = 3;
     // Codes
     static const std::string DEBUG_CODE = "DEBUG";
-    static int ERROR_OBJECT_ID = -999;
+    static std::int32_t ERROR_OBJECT_ID = -999;
     // Objects
     static auto DEFAULT_TEXTURE = sf::Texture(PLAY_BUTTON);
     static auto DEFAULT_FONT = sf::Font(DEFAULT_FONT_FILE);
