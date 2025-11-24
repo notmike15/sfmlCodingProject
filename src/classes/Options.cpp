@@ -102,7 +102,7 @@ namespace NMGP {
         fetchOptionsFromFile();
     }
 
-    int Options::getFrameRate() const {
+    std::int32_t Options::getFrameRate() const {
         return frameRate;
     }
     unsigned Options::getWindowHeight() const {

@@ -3,6 +3,7 @@
 
 #ifndef SFMLCODINGPROJECT_OPTIONS_H
 #define SFMLCODINGPROJECT_OPTIONS_H
+#include <cstdint>
 #include <string>
 
 
@@ -12,7 +13,7 @@
 namespace NMGP {
     class Options {
     private:
-        int frameRate;
+        std::int32_t frameRate;
         unsigned windowHeight;
         unsigned windowWidth;
         bool showFPS;
@@ -26,7 +27,7 @@ namespace NMGP {
         static void buildDefaultOptionsFile();
         // Pulls options from the file if it exists
         void fetchOptionsFromFile();
-        [[nodiscard]] int getFrameRate() const;
+        [[nodiscard]] std::int32_t getFrameRate() const;
         [[nodiscard]] unsigned getWindowHeight() const;
         [[nodiscard]] unsigned getWindowWidth() const;
         [[nodiscard]] float getWindowHeightFloat() const;
@@ -34,7 +35,7 @@ namespace NMGP {
         [[nodiscard]] bool isFPSVisible() const;
         [[nodiscard]] bool isVSyncEnabled() const;
     private:
-        int fileLoadCount = 0;
+        std::int32_t fileLoadCount = 0;
     };
 }
 #endif //SFMLCODINGPROJECT_OPTIONS_H
