@@ -9,19 +9,13 @@
 #include "Object.h"
 
 NMGP::Button::Button(const std::string &name, const std::string &text, LAYER layer, const sf::Font &font, const sf::Vector2f pos,
-                     const sf::Texture &texture, sf::Vector2f scale, ButtonType btype) : NMGP::Object(texture, layer, pos, scale)  {
+                     const sf::Texture &texture, sf::Vector2f scale, ButtonType btype) : TexturedObject(name, texture, layer, pos, scale)  {
     buttonType = btype;
     buttonState = ButtonState::DEFAULT;
     buttonName = name;
     buttonText = text;
     buttonFont = font;
-    objPos = pos;
-    objTexture = texture;
-    objSprite.setScale(scale);
-    objSprite.setOrigin(
-        sf::Vector2f(static_cast<float>(objSprite.getTexture().getSize().x) / 2.0f,
-            static_cast<float>(objSprite.getTexture().getSize().y) / 2.0f)
-    );
+
 } ;
 std::string NMGP::Button::getButtonName() const { return buttonName; };
 std::string NMGP::Button::getButtonText() const { return buttonText; };

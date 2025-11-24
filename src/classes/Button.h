@@ -6,6 +6,7 @@
 #define SFMLCODINGPROJECT_BUTTON_H
 #include "Constants.h"
 #include "Object.h"
+#include "TexturedObject.h"
 #include "SFML/Graphics/Font.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 
@@ -23,7 +24,7 @@ namespace NMGP {
         PRESSED = 2,
         DISABLED = 3
     };
-    class Button : public Object {
+    class Button : public TexturedObject {
         private:
             std::string buttonName;
             std::string buttonText;
