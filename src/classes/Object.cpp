@@ -5,38 +5,20 @@
 #include <utility>
 
 namespace NMGP {
-    Object::Object() : objSprite(Constants::DEFAULT_TEXTURE) {
+    Object::Object() {
         objName = Constants::DEFAULT_OBJECT_NAME;
-        objectID = Constants::ERROR_OBJECT_ID;
         objLayer = LAYER::BACKGROUND;
-        objTexture = Constants::DEFAULT_TEXTURE;
-        objPos = sf::Vector2f(0.f, 0.f);
-        objSprite.setPosition(sf::Vector2f(objPos.x, objPos.y));
     }
 
-    Object::Object(std::string name, int id, const sf::Texture& texture, LAYER layer, sf::Vector2f pos, sf::Vector2f scale) : objSprite(texture) {
+    Object::Object(std::string name, LAYER layer, sf::Vector2f pos, sf::Vector2f scale){
         objName = std::move(name);
-        setObjectID(id);
-        objTexture = texture;
         objLayer = layer;
         objPos = pos;
-        objSprite.setTexture(objTexture);
         this->Object::setPosition(objPos);
-        objSprite.setScale(scale);
-        objectID = id;
-    }
-    void Object::setObjectID(int id) {
-        if (id >= 0) {
-            objectID = id;
-        }
-        else {
-            objectID = 0;
-        }
     }
 
     void Object::setPosition(sf::Vector2f pos) {
         objPos = pos;
-        objSprite.setPosition(objPos);
     }
 
 }
