@@ -17,18 +17,18 @@ namespace NMGP {
         sf::Text text;
         sf::Color textColor;
     public:
-        Label(std::string name, int id, std::string displayText, sf::Color color, sf::Vector2f pos, LAYER layer, int textPointSize);
-        Label() : Label("Text", -1, "Text", sf::Color::Blue, {0.f, 0.f}, LAYER::SEMI_BACKGROUND, 16) {}
+        Label(std::string name, std::string displayText, sf::Color color, sf::Vector2f pos, LAYER layer, int textPointSize);
+        Label() : Label("Text", "Text", sf::Color::Blue, {0.f, 0.f}, LAYER::SEMI_BACKGROUND, 16) {}
         sf::Text getText();
         sf::Color getTextColor();
         void setTextColor(sf::Color color);
         void setText(std::string text);
-
         void setTextPointSize(int textPointSize);
         // Overridden so text can be drawn instead of a sprite/texture
         sf::Drawable* getDrawable() override;
         // Overridden so the text position is updated instead of the sprite's
         void setPosition(sf::Vector2f pos) override;
+        sf::Sprite getSprite() override;
     };
 } // NMGP
 

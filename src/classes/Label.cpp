@@ -5,8 +5,8 @@
 #include "Label.h"
 
 namespace NMGP {
-    Label::Label(std::string name, int id, std::string displayText, sf::Color color, sf::Vector2f pos, LAYER layer, int textPointSize) :
-        text(*font), NMGP::Object(name, id, Constants::DEFAULT_TEXTURE, layer, pos, {1.f, 1.f})
+    Label::Label(std::string name, std::string displayText, sf::Color color, sf::Vector2f pos, LAYER layer, int textPointSize) :
+        text(*font), Object(name, layer, pos, {1.f, 1.f})
     {
         textColor = color;
         text.setCharacterSize(textPointSize);
@@ -42,4 +42,11 @@ namespace NMGP {
         text.setPosition(pos);
         objPos = pos;
     }
+
+    sf::Sprite Label::getSprite() {
+        return sf::Sprite(Constants::DEFAULT_TEXTURE, sf::IntRect(
+            {-99, -99}, {0, 0
+        }));
+    }
+
 } // NMGP
