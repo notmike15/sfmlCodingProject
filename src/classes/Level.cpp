@@ -12,24 +12,17 @@ namespace NMGP {
     Level::~Level() {
         objects.clear();
     }
-
-    bool Level::comp(std::shared_ptr<Object> a, std::shared_ptr<Object> b) {
-        return a->getObjectID() > b->getObjectID();
-    }
     bool Level::compLayer(std::shared_ptr<Object> a, std::shared_ptr<Object> b) {
         return a->getLayer() < b->getLayer();
     }
     void Level::sortObjectsByLayer() {
         std::ranges::sort(objects, compLayer);
     }
-    Level::Level(std::vector<std::shared_ptr<Object>> objs, int id, ACTIVELEVEL lv) {
+    Level::Level(std::vector<std::shared_ptr<Object>> objs, std::int32_t id, ACTIVELEVEL lv) {
         for (std::shared_ptr<Object> object : objs) {
             objects.push_back(object);
         };
         levelID = id;
-        if (!objects.empty()) {
-            std::ranges::sort(objects, comp);
-        }
         levelActiveView = lv;
     }
 
@@ -42,7 +35,7 @@ namespace NMGP {
         return objects.back();
     }
 
-    std::shared_ptr<Object> Level::getObjectById(int id) {
+    std::shared_ptr<Object> Level::getObjectById(std::int32_t id) {
         return objects[id];
     }
 

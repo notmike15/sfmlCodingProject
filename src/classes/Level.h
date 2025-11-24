@@ -28,21 +28,19 @@ namespace NMGP {
     private:
         // Store all objects to be drawn to the window
         std::vector<std::shared_ptr<Object>> objects;
-        int levelID;
+        std::int32_t levelID;
         ACTIVELEVEL levelActiveView;
     public:
-        // Compare by id
-        static bool comp(std::shared_ptr<Object> a, std::shared_ptr<Object> b);
         // Compare by layer
         static bool compLayer(std::shared_ptr<Object> a, std::shared_ptr<Object> b);
         // Sort the objects list by the layer
         void sortObjectsByLayer();
 
-        Level(std::vector<std::shared_ptr<Object>> objs, int id, ACTIVELEVEL lv);
+        Level(std::vector<std::shared_ptr<Object>> objs, std::int32_t id, ACTIVELEVEL lv);
         Level() : Level(std::vector<std::shared_ptr<Object>>(), 0, ACTIVELEVEL::MAIN_MENU) {};
         ~Level();
-        [[nodiscard]] int getLevelID() const { return levelID; };
-        std::shared_ptr<Object> getObjectById(int id);
+        [[nodiscard]] std::int32_t getLevelID() const { return levelID; };
+        std::shared_ptr<Object> getObjectById(std::int32_t id);
         std::shared_ptr<Object> getObjectByName(std::string name);
         std::vector<std::shared_ptr<Object>> getObjects() { return objects; };
         void addObject(std::shared_ptr<Object> object);
