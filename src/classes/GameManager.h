@@ -4,6 +4,7 @@
 
 #ifndef SFMLCODINGPROJECT_GAMEMANAGER_H
 #define SFMLCODINGPROJECT_GAMEMANAGER_H
+#include <map>
 #include <memory>
 #include <vector>
 
@@ -19,6 +20,7 @@ namespace NMGP {
             Level::ACTIVELEVEL currentLevel;
             std::vector<std::shared_ptr<Level>> levels;
             Options options;
+            std::map<std::string, sf::Texture> textures;
         public:
             GameManager();
             ~GameManager();
@@ -33,6 +35,7 @@ namespace NMGP {
             // Draws all the objects to the window renderer in correct order
             // based on layer
             void drawWindow() const;
+            void loadTextures();
             // Loads all level objects with the correct data
             // There is no need to do this dynamically as this is a very small game
             void instantiateLevels();
