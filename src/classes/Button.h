@@ -15,7 +15,8 @@ namespace NMGP {
     enum ButtonType {
         PLAY_BUTTON = 901,
         MENU_BUTTON = 902,
-        OPTIONS_BUTTON = 903
+        OPTIONS_BUTTON = 903,
+        DICE_BUTTON = 904
     };
     // Used to make sure only processing clicks when active
     enum ButtonState {
