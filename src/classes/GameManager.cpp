@@ -21,6 +21,7 @@ namespace NMGP {
 
     GameManager::~GameManager() {
         levels.clear();
+        textures.clear();
     }
 
     std::shared_ptr<sf::RenderWindow> GameManager::getWindow() const {
@@ -81,7 +82,7 @@ namespace NMGP {
         levels[0]->setActiveLevel(Level::ACTIVELEVEL::MAIN_MENU);
 
         levels.push_back(std::make_shared<Level>());
-        levels[1]->addObject(std::shared_ptr<Object>(new Button("Main Menu", "Main Menu", Object::BACKGROUND, sf::Font(Constants::DEFAULT_FONT),
+        levels[1]->addObject(std::shared_ptr<Object>(new Button("Dice", "Dice", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT),
             {50.f, 50.f}, textures[Constants::PLAY_BUTTON], {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, ButtonType::MENU_BUTTON)));
         levels[1]->setActiveLevel(Level::ACTIVELEVEL::PLAY);
 
@@ -105,6 +106,7 @@ namespace NMGP {
     void GameManager::loadTextures() {
         textures[Constants::PLAY_BUTTON] = sf::Texture(Constants::PLAY_BUTTON);
         textures[Constants::BG_TEXTURE_DEBUG_LOCATION] = sf::Texture(Constants::BG_TEXTURE_DEBUG_LOCATION);
+        textures[Constants::DICE_TEXTURE] = sf::Texture(Constants::DICE_TEXTURE);
     }
 
 } // NMGP
