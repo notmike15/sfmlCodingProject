@@ -24,6 +24,8 @@ add_executable(main src/main.cpp
         src/classes/GameManager.cpp
         src/classes/Label.cpp
         src/classes/TexturedObject.cpp
+        src/classes/AnimatedObject.h
+        src/classes/AnimatedObject.cpp
 )
 target_compile_features(main PRIVATE cxx_std_23)
 target_link_libraries(main PRIVATE SFML::Graphics)
