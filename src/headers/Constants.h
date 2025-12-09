@@ -26,6 +26,7 @@ namespace Constants {
     static const std::string DEFAULT_FONT_FILE = "../resources/fonts/EvilEmpire.otf";
     static const std::string PLAY_BUTTON = "../resources/buttons/play_2.png";
     static const std::string BG_TEXTURE_DEBUG_LOCATION = "../resources/bg/background_debug_16xScale.png";
+    static const std::string DICE_TEXTURE = "../resources/objects/dice_sheet.png";
     static const std::string OPTIONS_FILE_NAME = "options.cfg";
     static const std::string ERROR_FILE_NAME = "error.log";
     static const std::string WINDOW_TITLE = "My Window";
