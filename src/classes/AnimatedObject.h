@@ -8,6 +8,10 @@
 
 namespace NMGP {
     class AnimatedObject : public NMGP::TexturedObject{
+    public:
+        enum AnimType {
+            DEFAULT = 0
+        };
     protected:
         const int TEXTURE_WIDTH = 32;
         const int TEXTURE_HEIGHT = 32;
