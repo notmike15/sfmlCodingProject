@@ -22,6 +22,7 @@ namespace NMGP {
             Options options;
             std::map<std::string, sf::Texture> textures;
             sf::Clock clock;
+            std::int32_t deltaTime;
         public:
             GameManager();
             ~GameManager();
@@ -35,7 +36,7 @@ namespace NMGP {
             void setOptions(const Options& newOptions);
             // Draws all the objects to the window renderer in correct order
             // based on layer
-            void drawWindow() const;
+            void drawWindow();
             void loadTextures();
             // Loads all level objects with the correct data
             // There is no need to do this dynamically as this is a very small game

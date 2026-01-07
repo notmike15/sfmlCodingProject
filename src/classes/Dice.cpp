@@ -4,9 +4,11 @@
 
 #include "Dice.h"
 
+#include <iostream>
+
 namespace NMGP {
     Dice::Dice(std::string name, const sf::Texture &texture, LAYER layer,
-        sf::Vector2f pos, sf::Vector2f scale, sf::Clock *clock) : AnimatedObject(name, texture, layer, pos, scale)
+        sf::Vector2f pos, std::int32_t *dt) : AnimatedObject(name, texture, layer, pos)
     {
         srand(time(0));
         numberOfSprites = 8;
@@ -19,7 +21,7 @@ namespace NMGP {
         objSprite.setTextureRect(getTextureRect());
         objSprite.setOrigin({16.f, 0});
         state = ROLLING;
-        clockTime = clock;
+        deltaTime = dt;
     }
     sf::Drawable* Dice::getDrawable() {
         if (state == STATIC) {
@@ -29,11 +31,11 @@ namespace NMGP {
             objSprite.setOrigin({16.f, 0});
         }
         else {
-            timeRolling += clockTime->restart();
-            if (timeRolling.asSeconds() >= 2.f) {
+            timeRolling += *deltaTime;
+            if (timeRolling >= 2000) {
                 endRoll();
             }
-            else if (timeRolling.asMicroseconds() % 15 == 0) {
+            else if ((timeRolling / 10) % 50 == 0) {
                 int randomNumber = rand() % 4;
                 if (randomNumber < 3) {
                     currentSprite = currentSprite == 6 ? 7 : 6;
@@ -56,7 +58,7 @@ namespace NMGP {
     void Dice::endRoll() {
         value = rand() % 6;
         currentSprite = value;
-        timeRolling = sf::Time::Zero;
+        timeRolling = 0;
         state = STATIC;
     }
 }

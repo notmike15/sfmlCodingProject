@@ -17,11 +17,11 @@ namespace NMGP {
             };
             int value = 0;
             DiceState state = DiceState::STATIC;
-            sf::Time timeRolling;
-            sf::Clock *clockTime;
+            std::int32_t timeRolling;
+            std::int32_t *deltaTime;
         public:
             Dice(std::string name, const sf::Texture &texture, LAYER layer,
-                sf::Vector2f pos, sf::Vector2f scale, sf::Clock *clock);
+                sf::Vector2f pos, std::int32_t *dt);
             sf::Drawable* getDrawable() override;
             void startRoll();
             void endRoll();

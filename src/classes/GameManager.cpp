@@ -75,34 +75,34 @@ namespace NMGP {
         levels[0]->addObject(std::shared_ptr<Object>(new Button(
             "playButton", "", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT),
             {(window->getSize().x / 2.0f), (window->getSize().y / 1.5f)},
-            textures[Constants::PLAY_BUTTON], {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, PLAY_BUTTON)));
+            textures[Constants::PLAY_BUTTON], PLAY_BUTTON)));
         levels[0]->addObject(std::shared_ptr<Object>(new Label(
             "Title", "Title", sf::Color::White, {
             (window->getSize().x / 2.0f) - 64, (window->getSize().y / 3.5f)
         }, Object::SEMI_BACKGROUND, 64
         )));
         levels[0]->addObject(std::shared_ptr<Object>(new TexturedObject("bg_test", textures[Constants::BG_TEXTURE_DEBUG_LOCATION],
-            Object::BACKGROUND, {0.f, 0.f},{Constants::PIXEL_RATIO, Constants::PIXEL_RATIO})));
+            Object::BACKGROUND, {0.f, 0.f})));
         levels[0]->setActiveLevel(Level::ACTIVELEVEL::MAIN_MENU);
 
         levels.push_back(std::make_shared<Level>());
         levels[1]->addObject(std::shared_ptr<Object>(new Button("DiceButton", "DiceButton", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT),
-            {1000.f, 1000.f}, textures[Constants::PLAY_BUTTON], {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, ButtonType::MENU_BUTTON)));
+            {1000.f, 1000.f}, textures[Constants::PLAY_BUTTON], ButtonType::MENU_BUTTON)));
         levels[1]->addObject(std::shared_ptr<Object>(new Dice("Dice", textures[Constants::DICE_TEXTURE],Object::SPRITE_TOP,
-            {(window->getSize().x / 2.0f), (window->getSize().y / 2.0f)}, {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, &clock)));
+            {(window->getSize().x / 2.0f), (window->getSize().y / 2.0f)}, &deltaTime)));
         levels[1]->setActiveLevel(Level::ACTIVELEVEL::PLAY);
 
         // Setting to active view
         currentLevel = Level::ACTIVELEVEL::MAIN_MENU;
     }
-    void GameManager::drawWindow() const {
+    void GameManager::drawWindow() {
+        deltaTime = clock.restart().asMilliseconds();
         // Gets current active level based on the current level value
         std::shared_ptr<Level> activeLevel = getActiveLevel();
         // Sorts it by layer and draws in that order
         activeLevel->sortObjectsByLayer();
         for (int i = 0; i < activeLevel->getObjects().size(); i++) {
             window->draw(*activeLevel->getObjects()[i]->getDrawable());
-            std::cout << (activeLevel->getObjects()[i]->getObjectName()) << std::endl;
         }
     }
 
