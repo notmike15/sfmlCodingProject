@@ -4,6 +4,9 @@
 
 #include "GameManager.h"
 
+#include <iostream>
+
+#include "Dice.h"
 #include "Label.h"
 #include "Level.h"
 
@@ -17,6 +20,7 @@ namespace NMGP {
         loadTextures();
         instantiateLevels();
         currentLevel = Level::ACTIVELEVEL::MAIN_MENU;
+        clock.restart();
     }
 
     GameManager::~GameManager() {
@@ -82,8 +86,10 @@ namespace NMGP {
         levels[0]->setActiveLevel(Level::ACTIVELEVEL::MAIN_MENU);
 
         levels.push_back(std::make_shared<Level>());
-        levels[1]->addObject(std::shared_ptr<Object>(new Button("Dice", "Dice", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT),
-            {50.f, 50.f}, textures[Constants::PLAY_BUTTON], {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, ButtonType::MENU_BUTTON)));
+        levels[1]->addObject(std::shared_ptr<Object>(new Button("DiceButton", "DiceButton", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT),
+            {1000.f, 1000.f}, textures[Constants::PLAY_BUTTON], {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, ButtonType::MENU_BUTTON)));
+        levels[1]->addObject(std::shared_ptr<Object>(new Dice("Dice", textures[Constants::DICE_TEXTURE],Object::SPRITE_TOP,
+            {(window->getSize().x / 2.0f), (window->getSize().y / 2.0f)}, {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}, &clock)));
         levels[1]->setActiveLevel(Level::ACTIVELEVEL::PLAY);
 
         // Setting to active view
@@ -96,6 +102,7 @@ namespace NMGP {
         activeLevel->sortObjectsByLayer();
         for (int i = 0; i < activeLevel->getObjects().size(); i++) {
             window->draw(*activeLevel->getObjects()[i]->getDrawable());
+            std::cout << (activeLevel->getObjects()[i]->getObjectName()) << std::endl;
         }
     }
 

@@ -21,6 +21,7 @@ namespace NMGP {
             std::vector<std::shared_ptr<Level>> levels;
             Options options;
             std::map<std::string, sf::Texture> textures;
+            sf::Clock clock;
         public:
             GameManager();
             ~GameManager();

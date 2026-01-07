@@ -19,8 +19,18 @@ namespace NMGP {
         int numberOfSprites;
         int currentSprite;
     public:
-        sf::IntRect getTextureRect(){ return textureRect; }
+        AnimatedObject(std::string name, const sf::Texture &texture, LAYER layer,
+        sf::Vector2f pos, sf::Vector2f scale) : TexturedObject::TexturedObject(name, texture, layer, pos, scale) {};
+        AnimatedObject() : AnimatedObject("default", Constants::DEFAULT_TEXTURE, LAYER::BACKGROUND,
+            {0.f, 0.f}, {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}) {
+            numberOfSprites = 0;
+            currentSprite = 0;
+        };
+        sf::IntRect getTextureRect() { return textureRect; }
+        void setTextureRect(sf::IntRect rect) { textureRect = rect; }
         void setSpriteCountInSpriteSheet(int newSpritePosition);
+        int getNumberOfSprites() const { return numberOfSprites; }
+        int getCurrentSprite() const { return currentSprite; }
     };
 }
 
