@@ -9,7 +9,7 @@
 #include "Object.h"
 
 NMGP::Button::Button(const std::string &name, const std::string &text, LAYER layer, const sf::Font &font, const sf::Vector2f pos,
-                     const sf::Texture &texture, sf::Vector2f scale, ButtonType btype) : TexturedObject(name, texture, layer, pos, scale)  {
+                     const sf::Texture &texture, ButtonType btype) : TexturedObject(name, texture, layer, pos)  {
     buttonType = btype;
     buttonState = ButtonState::DEFAULT;
     buttonName = name;

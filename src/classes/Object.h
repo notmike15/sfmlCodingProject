@@ -29,12 +29,13 @@ namespace NMGP {
             std::string objName;
             LAYER objLayer;
             sf::Vector2f objPos;
+            const sf::Vector2f OBJECT_SCALE = sf::Vector2f(8.f, 8.f);
         public:
             Object();
             virtual ~Object() = default;
-            Object(std::string name, LAYER layer, sf::Vector2f pos, sf::Vector2f scale);
-            Object(LAYER layer, sf::Vector2f pos, sf::Vector2f scale) :
-                Object(Constants::DEFAULT_OBJECT_NAME, layer, pos, scale) {};
+            Object(std::string name, LAYER layer, sf::Vector2f pos);
+            Object(LAYER layer, sf::Vector2f pos) :
+                Object(Constants::DEFAULT_OBJECT_NAME, layer, pos) {};
 
             LAYER getLayer() const { return objLayer; };
             void setLayer(LAYER layer) { objLayer = layer; };

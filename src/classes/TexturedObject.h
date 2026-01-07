@@ -15,9 +15,9 @@ namespace NMGP {
         sf::Sprite objSprite;
     public:
         TexturedObject();
-        TexturedObject(std::string name, const sf::Texture& texture, LAYER layer, sf::Vector2f pos, sf::Vector2f scale);
-        TexturedObject(const sf::Texture& texture, LAYER layer, sf::Vector2f pos, sf::Vector2f scale) :
-            TexturedObject(Constants::DEFAULT_OBJECT_NAME, texture, layer, pos, scale) {};
+        TexturedObject(std::string name, const sf::Texture& texture, LAYER layer, sf::Vector2f pos);
+        TexturedObject(const sf::Texture& texture, LAYER layer, sf::Vector2f pos) :
+            TexturedObject(Constants::DEFAULT_OBJECT_NAME, texture, layer, pos) {};
         sf::Texture getTexture() { return objTexture; };
         sf::Sprite getSprite() override { return objSprite; };
         void setTexture(sf::Texture texture) { objTexture = std::move(texture); };

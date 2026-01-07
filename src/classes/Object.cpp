@@ -10,7 +10,7 @@ namespace NMGP {
         objLayer = LAYER::BACKGROUND;
     }
 
-    Object::Object(std::string name, LAYER layer, sf::Vector2f pos, sf::Vector2f scale){
+    Object::Object(std::string name, LAYER layer, sf::Vector2f pos){
         objName = std::move(name);
         objLayer = layer;
         objPos = pos;

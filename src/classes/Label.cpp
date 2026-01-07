@@ -6,7 +6,7 @@
 
 namespace NMGP {
     Label::Label(std::string name, std::string displayText, sf::Color color, sf::Vector2f pos, LAYER layer, int textPointSize) :
-        text(*font), Object(name, layer, pos, {1.f, 1.f})
+        text(*font), Object(name, layer, pos)
     {
         textColor = color;
         text.setCharacterSize(textPointSize);

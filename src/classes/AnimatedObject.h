@@ -20,9 +20,9 @@ namespace NMGP {
         int currentSprite;
     public:
         AnimatedObject(std::string name, const sf::Texture &texture, LAYER layer,
-        sf::Vector2f pos, sf::Vector2f scale) : TexturedObject::TexturedObject(name, texture, layer, pos, scale) {};
+        sf::Vector2f pos) : TexturedObject::TexturedObject(name, texture, layer, pos) {};
         AnimatedObject() : AnimatedObject("default", Constants::DEFAULT_TEXTURE, LAYER::BACKGROUND,
-            {0.f, 0.f}, {Constants::PIXEL_RATIO, Constants::PIXEL_RATIO}) {
+            {0.f, 0.f}) {
             numberOfSprites = 0;
             currentSprite = 0;
         };

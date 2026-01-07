@@ -11,10 +11,10 @@ NMGP::TexturedObject::TexturedObject() :  objSprite(Constants::DEFAULT_TEXTURE) 
 }
 
 NMGP::TexturedObject::TexturedObject(std::string name, const sf::Texture &texture, LAYER layer,
-    sf::Vector2f pos, sf::Vector2f scale) : objSprite(texture), Object(name, layer, pos, scale){
+    sf::Vector2f pos) : objSprite(texture), Object(name, layer, pos){
     objTexture = texture;
     objSprite.setTexture(objTexture);
-    objSprite.setScale(scale);
+    objSprite.setScale(OBJECT_SCALE);
     TexturedObject::setPosition(pos);
     objSprite.setOrigin(
         sf::Vector2f(static_cast<float>(objSprite.getTexture().getSize().x) / 2.0f,
