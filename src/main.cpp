@@ -40,6 +40,8 @@ int main(int argc, char* argv[]) {
                             case Constants::ButtonClicks::PLAY_BUTTON_PRESSED:
                                 game.changeLevel(NMGP::Level::PLAY);
                                 break;
+                            case Constants::ButtonClicks::DICE_PRESSED:
+                                game.getActiveLevel()->getObjectByName("Dice")->onClick();
                             default:
                                 break;
                         }
