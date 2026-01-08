@@ -86,10 +86,12 @@ namespace NMGP {
         levels[0]->setActiveLevel(Level::ACTIVELEVEL::MAIN_MENU);
 
         levels.push_back(std::make_shared<Level>());
-        levels[1]->addObject(std::shared_ptr<Object>(new Button("DiceButton", "DiceButton", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT),
-            {1000.f, 1000.f}, textures[Constants::PLAY_BUTTON], ButtonType::MENU_BUTTON)));
+        levels[1]->addObject(std::shared_ptr<Object>(new Button("MenuButton", "MenuButton", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT),
+        {128.f, 80.f}, textures[Constants::PLAY_BUTTON], ButtonType::MENU_BUTTON)));
+        levels[1]->addObject(std::shared_ptr<Object>(new Button("RollButton", "RollButton", Object::BUTTON, sf::Font(Constants::DEFAULT_FONT),
+            {window->getSize().x / 2.0f, window->getSize().y / 1.2f}, textures[Constants::PLAY_BUTTON], ButtonType::DICE_BUTTON)));
         levels[1]->addObject(std::shared_ptr<Object>(new Dice("Dice", textures[Constants::DICE_TEXTURE],Object::SPRITE_TOP,
-            {(window->getSize().x / 2.0f), (window->getSize().y / 2.0f)}, &deltaTime)));
+            {(window->getSize().x / 2.0f), (window->getSize().y / 2.3f)}, &deltaTime)));
         levels[1]->setActiveLevel(Level::ACTIVELEVEL::PLAY);
 
         // Setting to active view
