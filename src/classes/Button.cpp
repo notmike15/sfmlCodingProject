@@ -38,6 +38,8 @@ int NMGP::Button::onClick() {
                 return Constants::ButtonClicks::PLAY_BUTTON_PRESSED;
             case ButtonType::OPTIONS_BUTTON:
                 return Constants::ButtonClicks::OPTIONS_PRESSED;
+            case ButtonType::DICE_BUTTON:
+                return Constants::ButtonClicks::DICE_PRESSED;
             default:
                 return Constants::ButtonClicks::MAIN_MENU_PRESSED;
         }
