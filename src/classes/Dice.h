@@ -5,6 +5,7 @@
 #ifndef SFMLCODINGPROJECT_DICE_H
 #define SFMLCODINGPROJECT_DICE_H
 #include "AnimatedObject.h"
+#include "Button.h"
 #include "SFML/System/Clock.hpp"
 #include "SFML/System/Time.hpp"
 
@@ -19,12 +20,15 @@ namespace NMGP {
             DiceState state = DiceState::STATIC;
             std::int32_t timeRolling;
             std::int32_t *deltaTime;
+            bool hasSwapped = false;
         public:
             Dice(std::string name, const sf::Texture &texture, LAYER layer,
                 sf::Vector2f pos, std::int32_t *dt);
             sf::Drawable* getDrawable() override;
             void startRoll();
             void endRoll();
+            void dicePressed();
+            int onClick() override;
 
     };
 }
