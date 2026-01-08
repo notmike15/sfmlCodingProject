@@ -47,6 +47,7 @@ namespace NMGP {
             sf::Sprite getButtonSprite() const;
             ButtonType getButtonType() const;
             ButtonState getButtonState() const;
+            void setButtonState(ButtonState newState) { buttonState = newState; };
 
             int onClick() override;
             int onHover() override;
