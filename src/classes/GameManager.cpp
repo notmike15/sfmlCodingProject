@@ -9,6 +9,7 @@
 #include "Dice.h"
 #include "Label.h"
 #include "Level.h"
+#include "PlayerData.h"
 
 namespace NMGP {
     GameManager::GameManager() {
@@ -19,6 +20,7 @@ namespace NMGP {
         options = Options();
         loadTextures();
         instantiateLevels();
+        PlayerData playerData {};
         currentLevel = Level::ACTIVELEVEL::MAIN_MENU;
         clock.restart();
     }
