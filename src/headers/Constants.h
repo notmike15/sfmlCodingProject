@@ -16,7 +16,8 @@ namespace Constants {
     enum ButtonClicks {
         PLAY_BUTTON_PRESSED = 1001,
         MAIN_MENU_PRESSED = 1002,
-        OPTIONS_PRESSED = 1003
+        OPTIONS_PRESSED = 1003,
+        DICE_PRESSED = 1004
     };
     // Error strings
     static const std::string UNABLE_TO_WRITE_FILE = "Unable to write file : ";
